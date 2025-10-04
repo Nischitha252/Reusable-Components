@@ -1,0 +1,7 @@
+ipykernel
+PyMuPDF
+faiss-cpu
+langchain-openai
+python-dotenv
+azure-core
+azure-search-documents
