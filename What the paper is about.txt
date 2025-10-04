@@ -1,0 +1,42 @@
+What the paper is about? 
+
+The paper proposes a method to automatically detect and classify symbols in engineering drawings.
+Instead of humans manually identifying symbols, a computer can:
+
+Find the legend table.
+
+Extract each symbol and its name from that table.
+
+Search the whole diagram to find where those symbols appear.
+
+Count and classify them correctly.
+
+This means the system learns the “dictionary” of symbols from the legend and then applies it to the entire drawing.
+
+The step-by-step idea
+
+Find the Legend Table
+
+Either use image processing (detect lines, rectangles, and look for the word "LEGEND")
+
+Or use a deep learning model (Faster R-CNN) to detect the legend box, even if it looks different.
+
+Extract Symbols + Text
+
+Split the table row by row.
+
+Separate the symbol (image) on the left from the name (text) on the right.
+
+Remove junk rows like headers that don’t contain symbols.
+
+Locate Symbols in the Diagram
+
+Train an object detection model (Faster R-CNN again) to scan the whole diagram and find regions that look like symbols (ignoring lines, arrows, etc.).
+
+Match Symbols with the Legend
+
+Instead of training a classifier for every possible symbol (impossible, since symbols vary a lot), they treat it like an image similarity problem.
+
+Example: if you detect a shape in the drawing, compare it with each symbol in the legend and pick the closest match.
+
+They use SIFT (feature extractor) or a Siamese network to measure similarity.
